@@ -1,0 +1,293 @@
+/* Kerangka app ala Stitch: kolom mobile 430px di tengah, surface hangat. */
+.app-shell {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow-x: clip;
+}
+
+@media (max-width: 639px) {
+  .app-shell {
+    max-width: 430px;
+    box-shadow: none;
+  }
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-height: 64px;
+  height: auto;
+  padding: var(--space-sm) max(16px, 2vw);
+  background: color-mix(in srgb, var(--color-surface) 85%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.app-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-left: auto;
+}
+
+.app-logo {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(30, 27, 24, 0.15));
+}
+
+.app-title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.app-tagline {
+  margin: 0;
+  color: var(--color-on-surface-variant);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md) max(16px, 2vw) var(--space-2xl);
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: none;
+  margin-inline: auto;
+}
+
+/* Kartu status ringan (offline / memeriksa sesi) */
+.status-card {
+  background: var(--color-surface-container-lowest);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  align-self: flex-start;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-label);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  background: var(--color-surface-container);
+  color: var(--color-on-surface-variant);
+}
+
+.status-pill--danger {
+  background: var(--color-error-container);
+  color: var(--color-on-error-container);
+}
+
+.status-pill--success {
+  background: var(--color-secondary-fixed);
+  color: var(--color-on-secondary-fixed);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status-hint {
+  margin: 0;
+  color: var(--color-on-surface-variant);
+  font-size: 0.875rem;
+}
+
+/* Tombol */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  min-height: 48px;
+  padding: 0 var(--space-md);
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: var(--shadow-control-raised);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.btn--primary {
+  background: var(--color-primary-container);
+  color: var(--color-on-primary-container);
+}
+
+.btn--primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 4px 5px 0px 0px var(--color-ink);
+}
+
+.btn--primary:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px var(--color-ink);
+}
+
+.btn--ghost {
+  background: var(--color-surface-container-lowest);
+  color: var(--color-on-surface);
+  box-shadow: var(--shadow-control);
+  font-family: var(--font-label);
+  font-weight: 700;
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--color-secondary-container);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-control-raised);
+}
+
+.btn--ghost:active:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px 0px var(--color-ink);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-weight: 700;
+  color: var(--color-secondary);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link:hover {
+  color: var(--color-on-secondary-container);
+}
+
+/* Field input kawaii */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.field-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 4px;
+  font-family: var(--font-label);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+.field-label .material-ico {
+  color: var(--color-primary);
+}
+
+.input {
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--space-md);
+  border: 0;
+  border-radius: var(--radius-input);
+  background: var(--color-surface-container-low);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  box-shadow: var(--shadow-control);
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.input::placeholder {
+  color: var(--color-outline);
+}
+
+.input:focus {
+  outline: none;
+  background: var(--color-surface-container-lowest);
+  box-shadow: var(--shadow-control-raised);
+  transform: translateY(-2px);
+}
+
+.input--invalid {
+  box-shadow:
+    var(--shadow-control),
+    inset 0 0 0 2px var(--color-error);
+}
+
+.field-hint {
+  padding-left: 4px;
+  color: var(--color-on-error-container);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.form-alert {
+  margin: 0;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-input);
+  background: var(--color-error-container);
+  color: var(--color-on-error-container);
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-control);
+}
+
+/* Ikon inline (pengganti Material Symbols, tanpa dependensi font) */
+.ico {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.ico--sm {
+  width: 14px;
+  height: 14px;
+}
+
+.ico--lg {
+  width: 22px;
+  height: 22px;
+}
